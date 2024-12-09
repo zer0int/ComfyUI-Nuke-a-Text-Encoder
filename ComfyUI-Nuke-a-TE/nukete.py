@@ -26,6 +26,7 @@ import comfy.sdxl_clip
 import numpy as np
 import safetensors.torch
 import latent_preview
+import random
 
 
 class CLIPTextEncodeNUKE:
@@ -37,6 +38,7 @@ class CLIPTextEncodeNUKE:
                 "clip": ("CLIP", {}),
                 "nuke_clip": (["False", "True"], {"default": "False"}),
                 "randn_clip": (["False", "True"], {"default": "False"}),
+                "seed": ("INT", {"default": 425533035839474, "min": 0, "max": 0xffffffffffffffff}),
                 "custom_embeds": (["False", "True"], {"default": "False"}),
                 "embeds_idx": ("INT", {"default": 0, "min": 0, "max": 99999, "step": 1}),
                 "embeds_path": ("STRING", {"default": "embeds/customembedding.pt"}),
@@ -47,7 +49,7 @@ class CLIPTextEncodeNUKE:
     CATEGORY = "zer0int/NUKE-a-TE"
     DESCRIPTION = "Nukes or randomizes text encoder input; loads custom embeddings for CLIP guidance."
 
-    def encode(self, clip, text, nuke_clip, randn_clip, custom_embeds, embeds_path, embeds_idx):
+    def encode(self, clip, text, nuke_clip, randn_clip, custom_embeds, embeds_path, embeds_idx, seed):
         tokens = clip.tokenize(text)
         output = clip.encode_from_tokens(tokens, return_pooled=True, return_dict=True)
 
@@ -96,6 +98,7 @@ class CLIPTextEncodeNUKE:
         #print(f" Post- L2 Norm After Normalization: {normalized.norm(p=2)}")
 
         if randn_clip == "True":
+            torch.manual_seed(seed)
             cond = torch.randn_like(cond)
 
         if nuke_clip == "True":
@@ -127,6 +130,7 @@ class CLIPTextEncodeSDXLNUKE:
                 "randn_clip": (["False", "True"], {"default": "False"}),
                 "nuke_bigclip": (["False", "True"], {"default": "False"}),
                 "randn_bigclip": (["False", "True"], {"default": "False"}),
+                "seed": ("INT", {"default": 425533035839474, "min": 0, "max": 0xffffffffffffffff}),
                 "custom_embeds": (["False", "True"], {"default": "False"}),
                 "embeds_idx": ("INT", {"default": 0, "min": 0, "max": 99999, "step": 1}),
                 "embeds_path": ("STRING", {"default": "embeds/customembedding.pt", "multiline": False}),
@@ -161,7 +165,7 @@ class CLIPTextEncodeSDXLNUKE:
 
     def load_and_encode(self, ckpt_name, clip_name1, clip_name2, width, height, crop_w, crop_h, target_width, target_height,
                         text_g, text_l, nuke_clip, randn_clip, nuke_bigclip, randn_bigclip,
-                        custom_embeds, embeds_path, embeds_idx):
+                        custom_embeds, embeds_path, embeds_idx, seed):
 
         model, clip, vae = self.load_checkpoint(ckpt_name)
         #print("=== DEBUG: LOADED CHECKPOINT ===")
@@ -246,6 +250,7 @@ class CLIPTextEncodeSDXLNUKE:
         def apply_bigclip_ops(cg, pg):
             if cg is not None and pg is not None:
                 if randn_bigclip == "True":
+                    torch.manual_seed(seed)
                     cg = torch.randn_like(cg)
                     pg = torch.randn_like(pg)
                 if nuke_bigclip == "True":
@@ -255,6 +260,7 @@ class CLIPTextEncodeSDXLNUKE:
 
         def apply_clip_ops(cl_, pl_):
             if randn_clip == "True":
+                torch.manual_seed(seed)
                 cl_ = torch.randn_like(cl_)
                 pl_ = torch.randn_like(pl_)
             if nuke_clip == "True":
@@ -322,6 +328,7 @@ class CLIPTextEncodeSDXLNUKE:
                     print("total_dim < 768, cannot carve out L portion. Skipping custom embedding.")
                     # Just apply ops to entire tensor
                     if randn_bigclip == "True" or randn_clip == "True":
+                        torch.manual_seed(seed)
                         cond = torch.randn_like(cond)
                         pooled = torch.randn_like(pooled)
                     if nuke_bigclip == "True" or nuke_clip == "True":
@@ -330,6 +337,7 @@ class CLIPTextEncodeSDXLNUKE:
             else:
                 # No custom embedding requested
                 if randn_bigclip == "True" or randn_clip == "True":
+                    torch.manual_seed(seed)
                     cond = torch.randn_like(cond)
                     pooled = torch.randn_like(pooled)
                 if nuke_bigclip == "True" or nuke_clip == "True":
@@ -365,6 +373,7 @@ class CLIPTextEncodeFluxNUKE:
                 "nuke_t5": (["False", "True"], {"default": "True"}),
                 "nuke_clip": (["False", "True"], {"default": "False"}), 
                 "randn_clip": (["False", "True"], {"default": "False"}),
+                "seed": ("INT", {"default": 425533035839474, "min": 0, "max": 0xffffffffffffffff}),
                 "custom_embeds": (["False", "True"], {"default": "False"}),            
                 "embeds_idx": ("INT", {"default": 0, "min": 0, "max": 99999, "step": 1}),
                 "embeds_path": ("STRING", {"default": "path/to/embedding.pt", "multiline": False}),
@@ -378,17 +387,14 @@ class CLIPTextEncodeFluxNUKE:
     CATEGORY = "zer0int/NUKE-a-TE"
     DESCRIPTION = "Nukes or randomizes text encoder input; loads custom embeddings for CLIP guidance." 
 
-    def encode(self, clip, clip_l, t5xxl, guidance, randn_t5, nuke_t5, nuke_clip, randn_clip, custom_embeds, embeds_path, embeds_idx):   
-        
+    def encode(self, clip, clip_l, t5xxl, guidance, randn_t5, nuke_t5, nuke_clip, randn_clip, custom_embeds, embeds_path, embeds_idx, seed):   
+
         if custom_embeds == "True":
-            
             tokens = clip.tokenize(clip_l)
             tokens["t5xxl"] = clip.tokenize(t5xxl)["t5xxl"]
 
             output = clip.encode_from_tokens(tokens, return_pooled=True, return_dict=True)
-
             clip_embeddings = output["pooled_output"]                     
-           
             modified_clip_embeddings = clip_embeddings
 
             if not os.path.exists(embeds_path):
@@ -401,54 +407,54 @@ class CLIPTextEncodeFluxNUKE:
                 )
 
             num_embeddings = custom_embedding.size(0)
-            print(f"\nAvailable batches (embeds_idx) in embedding: {num_embeddings} (0-{num_embeddings-1})")
             if embeds_idx >= num_embeddings or embeds_idx < 0:
-                print(f"Warning: embeds_idx {embeds_idx} is out of range ({num_embeddings}). Using first embedding (idx 0).")
                 embeds_idx = 0
                 
             selected_embedding = custom_embedding[embeds_idx:embeds_idx + 1].float()
             modified_clip_embeddings = selected_embedding
-            
             output["pooled_output"] = modified_clip_embeddings
             
             if randn_t5 == "True":
-                output["cond"] = torch.randn_like(output["cond"]) 
+                torch.manual_seed(seed)
+                output["cond"] = torch.randn_like(output["cond"])
 
             if nuke_t5 == "True":
                 output["cond"] = torch.zeros_like(output["cond"])                  
 
             if randn_clip == "True":
+                torch.manual_seed(seed)
                 output["pooled_output"] = torch.randn_like(output["pooled_output"]) 
 
             if nuke_clip == "True":
                 output["pooled_output"] = torch.zeros_like(output["pooled_output"]) 
-                
+            
             output["guidance"] = guidance
 
         else:
-            
             tokens = clip.tokenize(clip_l)
             tokens["t5xxl"] = clip.tokenize(t5xxl)["t5xxl"]
 
             output = clip.encode_from_tokens(tokens, return_pooled=True, return_dict=True)
-           
-              
+
             if randn_t5 == "True":
-                output["cond"] = torch.randn_like(output["cond"]) 
+                torch.manual_seed(seed)
+                output["cond"] = torch.randn_like(output["cond"])
 
             if nuke_t5 == "True":
                 output["cond"] = torch.zeros_like(output["cond"])                  
 
             if randn_clip == "True":
-                output["pooled_output"] = torch.randn_like(output["pooled_output"]) 
+                torch.manual_seed(seed)
+                output["pooled_output"] = torch.randn_like(output["pooled_output"])
 
             if nuke_clip == "True":
                 output["pooled_output"] = torch.zeros_like(output["pooled_output"]) 
-                
+            
             output["guidance"] = guidance
 
         cond = output.pop("cond", None)
         return ([[cond, output]], )
+
         
         
 # Need this so we don't need to load all of o1's madness for the negative prompt
@@ -469,13 +475,14 @@ class CLIPTextEncodeSDXLminiNUKE:
             "randn_clip": (["False", "True"], {"default": "False"}),
             "nuke_bigclip": (["False", "True"], {"default": "False"}),
             "randn_bigclip": (["False", "True"], {"default": "False"}),
+            "seed": ("INT", {"default": 425533035839474, "min": 0, "max": 0xffffffffffffffff}),
         }}
     RETURN_TYPES = ("CONDITIONING",)
     FUNCTION = "encode"
     CATEGORY = "zer0int/NUKE-a-TE"
     DESCRIPTION = "Nukes or randomizes text encoder input; loads custom embeddings for CLIP guidance."
 
-    def encode(self, clip, width, height, crop_w, crop_h, target_width, target_height, text_g, text_l, nuke_clip, randn_clip, randn_bigclip, nuke_bigclip):
+    def encode(self, clip, width, height, crop_w, crop_h, target_width, target_height, text_g, text_l, nuke_clip, randn_clip, randn_bigclip, nuke_bigclip, seed):
 
         # Tokenize
         tokens_g = clip.tokenize(text_g)  
@@ -513,6 +520,7 @@ class CLIPTextEncodeSDXLminiNUKE:
 
             # Randomization/nuking
             if randn_bigclip == "True":
+                torch.manual_seed(seed)
                 cond_g = torch.randn_like(cond_g)
                 pooled_g = torch.randn_like(pooled_g)
             if nuke_bigclip == "True":
@@ -520,6 +528,7 @@ class CLIPTextEncodeSDXLminiNUKE:
                 pooled_g = torch.zeros_like(pooled_g)
 
             if randn_clip == "True":
+                torch.manual_seed(seed)
                 cond_l = torch.randn_like(cond_l)
                 pooled_l = torch.randn_like(pooled_l)
             if nuke_clip == "True":
@@ -534,6 +543,7 @@ class CLIPTextEncodeSDXLminiNUKE:
             # Unknown dimension scenario (e.g., 1280)
             # If user wants to nuke or randn, apply to entire tensor:
             if randn_bigclip == "True" or randn_clip == "True":
+                torch.manual_seed(seed)
                 cond = torch.randn_like(cond)
                 pooled = torch.randn_like(pooled)
             if nuke_bigclip == "True" or nuke_clip == "True":
