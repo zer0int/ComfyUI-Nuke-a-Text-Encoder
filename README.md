@@ -1,5 +1,10 @@
 ### ComfyUI Nukes & Embeddings for Text Encoders! 🤯
 
+## Update 09/DEC/24:
+
+- Added random seed control for "randn" of Text Encoders (random, fixed, in-/decrement)
+- ⚠️ After update, when using existing workflows, please RIGHT CLICK -> FIX NODE (rebuild)!
+------
 - Put the "ComfyUI-Nuke-a-TE" folder into "ComfyUI/custom_nodes" and run Comfy.
 - Nuke a text encoder (zero the image-guiding input)!
 - Nuke T5 to guide Flux.1-dev with CLIP only!
