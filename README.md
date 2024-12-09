@@ -15,6 +15,10 @@ o1 did this (SDXL).
 
 ![ai-is-artist](https://github.com/user-attachments/assets/abb1fbd4-6b90-4904-b5d8-17266e2ac38b)
 ------
+Flux.1 guided by a double random distribution bias reveal.
+
+![8](https://github.com/user-attachments/assets/bc5d4db7-406a-4b68-945b-7618697b8ebd)
+------
 CLIP still can't write coherent text, and never will. But it makes fun things on its own! (Flux.1-dev)
 
 ![cant-draw](https://github.com/user-attachments/assets/3a33d1e3-0c50-4b3d-8106-04ea99fd7abf)
