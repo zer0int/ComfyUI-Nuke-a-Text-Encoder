@@ -1,6 +1,6 @@
 {
-  "last_node_id": 43,
-  "last_link_id": 96,
+  "last_node_id": 46,
+  "last_link_id": 113,
   "nodes": [
     {
       "id": 3,
@@ -20,17 +20,17 @@
         {
           "name": "model",
           "type": "MODEL",
-          "link": 84
+          "link": 104
         },
         {
           "name": "positive",
           "type": "CONDITIONING",
-          "link": 88
+          "link": 109
         },
         {
           "name": "negative",
           "type": "CONDITIONING",
-          "link": 94
+          "link": 112
         },
         {
           "name": "latent_image",
@@ -98,7 +98,7 @@
         {
           "name": "vae",
           "type": "VAE",
-          "link": 86
+          "link": 107
         }
       ],
       "outputs": [
@@ -152,15 +152,15 @@
       "id": 8,
       "type": "EmptyLatentImage",
       "pos": {
-        "0": 665,
-        "1": 866
+        "0": 658,
+        "1": 865
       },
       "size": {
         "0": 210,
         "1": 106
       },
       "flags": {},
-      "order": 0,
+      "order": 3,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -207,12 +207,12 @@
         {
           "name": "positive",
           "type": "CONDITIONING",
-          "link": 89
+          "link": 110
         },
         {
           "name": "negative",
           "type": "CONDITIONING",
-          "link": 95
+          "link": 113
         },
         {
           "name": "latent_image",
@@ -279,7 +279,7 @@
         {
           "name": "vae",
           "type": "VAE",
-          "link": 87
+          "link": 108
         }
       ],
       "outputs": [
@@ -347,7 +347,7 @@
         {
           "name": "model",
           "type": "MODEL",
-          "link": 92
+          "link": 105
         }
       ],
       "outputs": [
@@ -382,7 +382,7 @@
         "1": 82
       },
       "flags": {},
-      "order": 1,
+      "order": 2,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -402,7 +402,7 @@
       },
       "widgets_values": [
         318565403550383,
-        "randomize"
+        "fixed"
       ]
     },
     {
@@ -412,10 +412,10 @@
         "0": 1316,
         "1": 991
       },
-      "size": {
-        "0": 210,
-        "1": 66.33840942382812
-      },
+      "size": [
+        210,
+        270
+      ],
       "flags": {},
       "order": 14,
       "mode": 0,
@@ -441,10 +441,10 @@
         "0": 1316,
         "1": 1108
       },
-      "size": {
-        "0": 210,
-        "1": 58
-      },
+      "size": [
+        210,
+        270
+      ],
       "flags": {},
       "order": 12,
       "mode": 0,
@@ -464,132 +464,6 @@
       "bgcolor": "#3f5159"
     },
     {
-      "id": 39,
-      "type": "CLIPTextEncodeSDXLNUKE",
-      "pos": {
-        "0": 884,
-        "1": 269
-      },
-      "size": {
-        "0": 383.07318115234375,
-        "1": 676.4370727539062
-      },
-      "flags": {},
-      "order": 4,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            84,
-            92
-          ],
-          "slot_index": 0
-        },
-        {
-          "name": "CLIP",
-          "type": "CLIP",
-          "links": [
-            96
-          ],
-          "slot_index": 1
-        },
-        {
-          "name": "VAE",
-          "type": "VAE",
-          "links": [
-            86,
-            87
-          ]
-        },
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "links": [
-            88,
-            89
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "CLIPTextEncodeSDXLNUKE"
-      },
-      "widgets_values": [
-        "sd_xl_base_1.0.safetensors",
-        "ComfyUI_clip_g_00001_.safetensors",
-        "ViT-L-14-GmP-SAE-TE-only.safetensors",
-        1024,
-        1024,
-        0,
-        0,
-        1024,
-        1024,
-        "kitty caturday",
-        "kitty caturday (but hey, get an embedding first, really, it's best - see note below!)",
-        "False",
-        "False",
-        "True",
-        "False",
-        "True",
-        5,
-        "path/to/embed.pt"
-      ]
-    },
-    {
-      "id": 41,
-      "type": "CLIPTextEncodeSDXLminiNUKE",
-      "pos": {
-        "0": 663,
-        "1": 441
-      },
-      "size": {
-        "0": 210,
-        "1": 366
-      },
-      "flags": {},
-      "order": 6,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 96
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "links": [
-            94,
-            95
-          ],
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "CLIPTextEncodeSDXLminiNUKE"
-      },
-      "widgets_values": [
-        1024,
-        1024,
-        0,
-        0,
-        1024,
-        1024,
-        "",
-        "",
-        "False",
-        "True",
-        "True",
-        "False"
-      ],
-      "color": "#322",
-      "bgcolor": "#533"
-    },
-    {
       "id": 42,
       "type": "Note",
       "pos": {
@@ -601,7 +475,7 @@
         "1": 156.35166931152344
       },
       "flags": {},
-      "order": 2,
+      "order": 0,
       "mode": 0,
       "inputs": [],
       "outputs": [],
@@ -619,12 +493,12 @@
         "0": 838,
         "1": 142
       },
-      "size": [
-        397.10418541601894,
-        64.21239371018038
-      ],
+      "size": {
+        "0": 397.10418701171875,
+        "1": 64.21239471435547
+      },
       "flags": {},
-      "order": 3,
+      "order": 1,
       "mode": 0,
       "inputs": [],
       "outputs": [],
@@ -634,6 +508,133 @@
       ],
       "color": "#432",
       "bgcolor": "#653"
+    },
+    {
+      "id": 45,
+      "type": "CLIPTextEncodeSDXLNUKE",
+      "pos": {
+        "0": 884,
+        "1": 269
+      },
+      "size": [
+        380.72804087820396,
+        675.9484164400257
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            104,
+            105
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            111
+          ]
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            107,
+            108
+          ]
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            109,
+            110
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeSDXLNUKE"
+      },
+      "widgets_values": [
+        "sd_xl_base_1.0.safetensors",
+        "ComfyUI_clip_g_00001_.safetensors",
+        "ViT-L-14-GmP-SAE-TE-only.safetensors",
+        1024,
+        1024,
+        0,
+        0,
+        1024,
+        1024,
+        "kitty caturday\n",
+        "kitty caturday (but hey, get an embedding first, really, it's best - see note below!)",
+        "False",
+        "True",
+        "False",
+        "False",
+        425533035839475,
+        "fixed",
+        "False",
+        0,
+        "embeds/customembedding.pt"
+      ]
+    },
+    {
+      "id": 46,
+      "type": "CLIPTextEncodeSDXLminiNUKE",
+      "pos": {
+        "0": 631,
+        "1": 408
+      },
+      "size": {
+        "0": 237.04287719726562,
+        "1": 414
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 111
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            112,
+            113
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeSDXLminiNUKE"
+      },
+      "widgets_values": [
+        1024,
+        1024,
+        0,
+        0,
+        1024,
+        1024,
+        "",
+        "",
+        "False",
+        "True",
+        "True",
+        "False",
+        254097528462450,
+        "randomize"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
     }
   ],
   "links": [
@@ -718,54 +719,6 @@
       "IMAGE"
     ],
     [
-      84,
-      39,
-      0,
-      3,
-      0,
-      "MODEL"
-    ],
-    [
-      86,
-      39,
-      2,
-      6,
-      1,
-      "VAE"
-    ],
-    [
-      87,
-      39,
-      2,
-      12,
-      1,
-      "VAE"
-    ],
-    [
-      88,
-      39,
-      3,
-      3,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      89,
-      39,
-      3,
-      10,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      92,
-      39,
-      0,
-      14,
-      0,
-      "MODEL"
-    ],
-    [
       93,
       14,
       0,
@@ -774,38 +727,86 @@
       "MODEL"
     ],
     [
-      94,
-      41,
+      104,
+      45,
+      0,
+      3,
+      0,
+      "MODEL"
+    ],
+    [
+      105,
+      45,
+      0,
+      14,
+      0,
+      "MODEL"
+    ],
+    [
+      107,
+      45,
+      2,
+      6,
+      1,
+      "VAE"
+    ],
+    [
+      108,
+      45,
+      2,
+      12,
+      1,
+      "VAE"
+    ],
+    [
+      109,
+      45,
+      3,
+      3,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      110,
+      45,
+      3,
+      10,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      111,
+      45,
+      1,
+      46,
+      0,
+      "CLIP"
+    ],
+    [
+      112,
+      46,
       0,
       3,
       2,
       "CONDITIONING"
     ],
     [
-      95,
-      41,
+      113,
+      46,
       0,
       10,
       2,
       "CONDITIONING"
-    ],
-    [
-      96,
-      39,
-      1,
-      41,
-      0,
-      "CLIP"
     ]
   ],
   "groups": [],
   "config": {},
   "extra": {
     "ds": {
-      "scale": 1.4641000000000015,
+      "scale": 1.4641000000000017,
       "offset": [
-        -236.27139458035282,
-        53.0188862183484
+        -94.63636299695571,
+        79.36474482905476
       ]
     }
   },

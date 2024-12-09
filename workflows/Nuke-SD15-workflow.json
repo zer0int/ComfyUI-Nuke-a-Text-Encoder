@@ -1,6 +1,6 @@
 {
-  "last_node_id": 41,
-  "last_link_id": 110,
+  "last_node_id": 44,
+  "last_link_id": 123,
   "nodes": [
     {
       "id": 3,
@@ -25,12 +25,12 @@
         {
           "name": "positive",
           "type": "CONDITIONING",
-          "link": 110
+          "link": 114
         },
         {
           "name": "negative",
           "type": "CONDITIONING",
-          "link": 108
+          "link": 112
         },
         {
           "name": "latent_image",
@@ -65,15 +65,15 @@
       "id": 4,
       "type": "CheckpointLoaderSimple",
       "pos": {
-        "0": 191,
+        "0": 116,
         "1": 274
       },
-      "size": [
-        336.9458332172828,
-        98
-      ],
+      "size": {
+        "0": 336.9458312988281,
+        "1": 98
+      },
       "flags": {},
-      "order": 3,
+      "order": 4,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -88,7 +88,10 @@
         {
           "name": "CLIP",
           "type": "CLIP",
-          "links": [],
+          "links": [
+            122,
+            123
+          ],
           "slot_index": 1
         },
         {
@@ -104,7 +107,7 @@
         "Node name for S&R": "CheckpointLoaderSimple"
       },
       "widgets_values": [
-        "v1-5-pruned-emaonly.safetensors"
+        "v2-1_512-ema-pruned.safetensors"
       ]
     },
     {
@@ -119,7 +122,7 @@
         "1": 106
       },
       "flags": {},
-      "order": 1,
+      "order": 0,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -145,8 +148,8 @@
       "id": 8,
       "type": "VAEDecode",
       "pos": {
-        "0": 629,
-        "1": 42
+        "0": 623,
+        "1": 15
       },
       "size": {
         "0": 140,
@@ -189,10 +192,10 @@
         "0": 1073,
         "1": 40
       },
-      "size": [
-        430.945277355808,
-        480.7397704105822
-      ],
+      "size": {
+        "0": 430.9452819824219,
+        "1": 480.7397766113281
+      },
       "flags": {},
       "order": 9,
       "mode": 0,
@@ -213,25 +216,23 @@
       "id": 37,
       "type": "CLIPLoader",
       "pos": {
-        "0": 127,
-        "1": 137
+        "0": 48,
+        "1": 136
       },
-      "size": [
-        409.0445671356131,
-        84.82956156341572
-      ],
+      "size": {
+        "0": 409.0445556640625,
+        "1": 84.82955932617188
+      },
       "flags": {},
-      "order": 0,
+      "order": 3,
       "mode": 0,
       "inputs": [],
       "outputs": [
         {
           "name": "CLIP",
           "type": "CLIP",
-          "links": [
-            107,
-            109
-          ]
+          "links": [],
+          "slot_index": 0
         }
       ],
       "properties": {
@@ -243,105 +244,18 @@
       ]
     },
     {
-      "id": 38,
-      "type": "CLIPTextEncodeNUKE",
-      "pos": {
-        "0": 559,
-        "1": 151
-      },
-      "size": [
-        212.51196511711714,
-        196
-      ],
-      "flags": {},
-      "order": 5,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 107
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "links": [
-            108
-          ]
-        }
-      ],
-      "title": "CLIP-SD1 NUKE (negative)",
-      "properties": {
-        "Node name for S&R": "CLIPTextEncodeNUKE"
-      },
-      "widgets_values": [
-        "",
-        "False",
-        "False",
-        "False",
-        0,
-        "embed.pt"
-      ],
-      "color": "#322",
-      "bgcolor": "#533"
-    },
-    {
-      "id": 39,
-      "type": "CLIPTextEncodeNUKE",
-      "pos": {
-        "0": 288,
-        "1": 418
-      },
-      "size": [
-        343.6650311530045,
-        205.837698795886
-      ],
-      "flags": {},
-      "order": 6,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 109
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "links": [
-            110
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "CLIPTextEncodeNUKE"
-      },
-      "widgets_values": [
-        "randn: Guidance by a random distribution (surprise)!\nnuke: tensor full of zeros, no guidance.",
-        "False",
-        "False",
-        "False",
-        0,
-        "embeds/customembedding.pt"
-      ]
-    },
-    {
       "id": 40,
       "type": "Note",
       "pos": {
         "0": 646,
         "1": 478
       },
-      "size": [
-        415.40677341416904,
-        157.67186797105126
-      ],
+      "size": {
+        "0": 415.4067687988281,
+        "1": 157.671875
+      },
       "flags": {},
-      "order": 2,
+      "order": 1,
       "mode": 0,
       "inputs": [],
       "outputs": [],
@@ -356,15 +270,15 @@
       "id": 41,
       "type": "Note",
       "pos": {
-        "0": 137,
+        "0": 65,
         "1": 24
       },
-      "size": [
-        391.8866739728501,
-        63.872608769479
-      ],
+      "size": {
+        "0": 391.8866882324219,
+        "1": 63.87260818481445
+      },
       "flags": {},
-      "order": 4,
+      "order": 2,
       "mode": 0,
       "inputs": [],
       "outputs": [],
@@ -374,6 +288,98 @@
       ],
       "color": "#432",
       "bgcolor": "#653"
+    },
+    {
+      "id": 42,
+      "type": "CLIPTextEncodeNUKE",
+      "pos": {
+        "0": 476,
+        "1": 113
+      },
+      "size": {
+        "0": 311.7621765136719,
+        "1": 244
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 123
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            112
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeNUKE"
+      },
+      "widgets_values": [
+        "kitty caturday",
+        "False",
+        "True",
+        425533035839474,
+        "fixed",
+        "False",
+        0,
+        "embeds/customembedding.pt"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 43,
+      "type": "CLIPTextEncodeNUKE",
+      "pos": {
+        "0": 221,
+        "1": 415
+      },
+      "size": {
+        "0": 402.8760986328125,
+        "1": 279.5404357910156
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 122
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            114
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeNUKE"
+      },
+      "widgets_values": [
+        "randn: Guidance by a random distribution (surprise)!\nnuke: tensor full of zeros, no guidance.",
+        "False",
+        "True",
+        425533035839474,
+        "fixed",
+        "False",
+        0,
+        "embeds/customembedding.pt"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
     }
   ],
   "links": [
@@ -418,46 +424,46 @@
       "IMAGE"
     ],
     [
-      107,
-      37,
-      0,
-      38,
-      0,
-      "CLIP"
-    ],
-    [
-      108,
-      38,
+      112,
+      42,
       0,
       3,
       2,
       "CONDITIONING"
     ],
     [
-      109,
-      37,
-      0,
-      39,
-      0,
-      "CLIP"
-    ],
-    [
-      110,
-      39,
+      114,
+      43,
       0,
       3,
       1,
       "CONDITIONING"
+    ],
+    [
+      122,
+      4,
+      1,
+      43,
+      0,
+      "CLIP"
+    ],
+    [
+      123,
+      4,
+      1,
+      42,
+      0,
+      "CLIP"
     ]
   ],
   "groups": [],
   "config": {},
   "extra": {
     "ds": {
-      "scale": 1.948717100000002,
+      "scale": 1.7715610000000022,
       "offset": [
-        195.089575682307,
-        158.70243533662136
+        363.6679364029618,
+        131.47297932711882
       ]
     }
   },

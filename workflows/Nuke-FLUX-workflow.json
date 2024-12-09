@@ -1,6 +1,6 @@
 {
-  "last_node_id": 135,
-  "last_link_id": 280,
+  "last_node_id": 136,
+  "last_link_id": 282,
   "nodes": [
     {
       "id": 8,
@@ -50,10 +50,10 @@
         "0": 818,
         "1": 660
       },
-      "size": [
-        561.2810258736472,
-        502.0690214338906
-      ],
+      "size": {
+        "0": 561.281005859375,
+        "1": 502.06903076171875
+      },
       "flags": {},
       "order": 16,
       "mode": 0,
@@ -82,7 +82,7 @@
         "1": 60.429901123046875
       },
       "flags": {},
-      "order": 1,
+      "order": 0,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -110,12 +110,12 @@
         "0": 25,
         "1": 514
       },
-      "size": [
-        428.73686187435635,
-        106
-      ],
+      "size": {
+        "0": 428.7368469238281,
+        "1": 106
+      },
       "flags": {},
-      "order": 4,
+      "order": 1,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -123,7 +123,7 @@
           "name": "CLIP",
           "type": "CLIP",
           "links": [
-            279
+            281
           ],
           "slot_index": 0,
           "shape": 3
@@ -218,7 +218,7 @@
         "1": 58
       },
       "flags": {},
-      "order": 7,
+      "order": 2,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -250,7 +250,7 @@
         "1": 106
       },
       "flags": {},
-      "order": 12,
+      "order": 13,
       "mode": 0,
       "inputs": [
         {
@@ -291,7 +291,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 13,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -303,7 +303,7 @@
         {
           "name": "conditioning",
           "type": "CONDITIONING",
-          "link": 280,
+          "link": 282,
           "slot_index": 1
         }
       ],
@@ -335,7 +335,7 @@
         "1": 82
       },
       "flags": {},
-      "order": 8,
+      "order": 3,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -370,7 +370,7 @@
         "1": 78
       },
       "flags": {},
-      "order": 9,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
@@ -417,12 +417,12 @@
         "0": 548,
         "1": 1217
       },
-      "size": [
-        210,
-        122
-      ],
+      "size": {
+        "0": 210,
+        "1": 122
+      },
       "flags": {},
-      "order": 10,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
@@ -484,7 +484,7 @@
         "1": 82
       },
       "flags": {},
-      "order": 3,
+      "order": 4,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -519,12 +519,12 @@
         "0": 784,
         "1": 1214
       },
-      "size": [
-        219.438808565346,
-        82
-      ],
+      "size": {
+        "0": 219.43881225585938,
+        "1": 82
+      },
       "flags": {},
-      "order": 2,
+      "order": 5,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -564,7 +564,7 @@
         "1": 82
       },
       "flags": {},
-      "order": 0,
+      "order": 6,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -585,64 +585,18 @@
       ]
     },
     {
-      "id": 133,
-      "type": "CLIPTextEncodeFluxNUKE",
-      "pos": {
-        "0": 19,
-        "1": 680
-      },
-      "size": [
-        446.56994483630683,
-        487.5338353351267
-      ],
-      "flags": {},
-      "order": 11,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 279
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "links": [
-            280
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "CLIPTextEncodeFluxNUKE"
-      },
-      "widgets_values": [
-        "meowcatsbread, feline bred cake toast! catday chibi bread lasagna merged, toast feline cakeday face ... fracmatematcat pudfacepfeline slice, slice toastcat ^^ merged, loafkitty bread feline joined head, cat isontoast bread mounted",
-        "randn: Guidance by a random distribution (surprise)!\nnuke: tensor full of zeros, no guidance. \nwe're randomizing the T5 guidance here (randn_t5), \nso it doesn't matter what I type here. =)\n\nPS: You want an embedding. Trust me. See note below.",
-        22,
-        "False",
-        "True",
-        "False",
-        "False",
-        "False",
-        12,
-        "path/to/embedding.pt"
-      ]
-    },
-    {
       "id": 134,
       "type": "Note",
       "pos": {
         "0": 21,
         "1": 1217
       },
-      "size": [
-        491.02615849432857,
-        127.07784871248828
-      ],
+      "size": {
+        "0": 491.0261535644531,
+        "1": 127.07785034179688
+      },
       "flags": {},
-      "order": 6,
+      "order": 7,
       "mode": 0,
       "inputs": [],
       "outputs": [],
@@ -660,12 +614,12 @@
         "0": 31,
         "1": 402
       },
-      "size": [
-        414.61387583575447,
-        58
-      ],
+      "size": {
+        "0": 414.6138610839844,
+        "1": 58
+      },
       "flags": {},
-      "order": 5,
+      "order": 8,
       "mode": 0,
       "inputs": [],
       "outputs": [],
@@ -675,6 +629,54 @@
       ],
       "color": "#432",
       "bgcolor": "#653"
+    },
+    {
+      "id": 136,
+      "type": "CLIPTextEncodeFluxNUKE",
+      "pos": {
+        "0": 19,
+        "1": 680
+      },
+      "size": [
+        440.6654985972337,
+        477.52310627025554
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 281
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            282
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeFluxNUKE"
+      },
+      "widgets_values": [
+        "meowcatsbread, feline bred cake toast! catday chibi bread lasagna merged, toast feline cakeday face ... fracmatematcat pudfacepfeline slice, slice toastcat ^^ merged, loafkitty bread feline joined head, cat isontoast bread mounted",
+        "randn: Guidance by a random distribution (surprise)!\nnuke: tensor full of zeros, no guidance. \nwe're randomizing the T5 guidance here (randn_t5), \nso it doesn't matter what I type here. =)\n\nPS: You want an embedding. Trust me. See note below.",
+        11,
+        "True",
+        "False",
+        "False",
+        "False",
+        425533035839474,
+        "fixed",
+        "False",
+        0,
+        "path/to/embedding.pt"
+      ]
     }
   ],
   "links": [
@@ -799,16 +801,16 @@
       "MODEL"
     ],
     [
-      279,
+      281,
       11,
       0,
-      133,
+      136,
       0,
       "CLIP"
     ],
     [
-      280,
-      133,
+      282,
+      136,
       0,
       22,
       1,
@@ -821,8 +823,8 @@
     "ds": {
       "scale": 1.7715610000000022,
       "offset": [
-        504.00930874993577,
-        -292.1518878495306
+        469.1506515513841,
+        -191.246407226659
       ]
     },
     "groupNodes": {}
