@@ -1,5 +1,16 @@
-### ComfyUI Nukes & Embeddings for Text Encoders! 🤯
+### ComfyUI Nukes & Embeddings for Text Encoders! And (Difference) Vector Algebra fun!
+## Update 05/AUG/25:
 
+- Added version with Difference Vectors (add and subtract vectors)!
+- Just put the "ComfyUI-Diff-Vec" folder into "ComfyUI/custom_nodes" and run Comfy.
+- Why? Vector Algebra! Subtract, Add, or Both:
+- king - man + woman = queen
+
+![merge-add-subtract](https://github.com/user-attachments/assets/69b79857-6c20-45fc-8471-0090c3adb89a)
+
+![explanation-of-difference-vectors](https://github.com/user-attachments/assets/af1f9753-3b8c-4880-82c4-897e4c4758d7)
+
+------
 ## Update 09/DEC/24:
 
 - Added random seed control for "randn" of Text Encoders (random, fixed, in-/decrement)
